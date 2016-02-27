@@ -1,0 +1,1 @@
+This repository contains materials used in the 2016 program that featured self-driving parade floats. See the README files in the individual directories for more information.
