@@ -1,6 +1,17 @@
+// *************************
+// *                       *
+// *  Light Show Examples  *
+// *                       *
+// *************************
 
 extern NeoPixelColor colors[];
 extern int tones[8];
+
+// **********************
+// *                    *
+// *  Example Patterns  *
+// *                    *
+// **********************
 
 MakeGizmoGardenText(testPattern,
 ". . A A I I . ."
@@ -22,34 +33,65 @@ MakeGizmoGardenText(happy,
 ". A . . . . A ."
 ". . A A A A . .");
 
-void happyShow()
-{
-  // Move happy face left to right while playing musical scale
-  for (int i = 0; i < 8; ++i)
-  {
-    lightShow(happy, colors, 100, 0, i - 7, 0);
-    GizmoGardenTone(tones[i], 100);
-    delay(250);
-  }
-  delay(750);
-  
-  // Move upside-down happy face top to bottom while playing
-  // musical scale backwards
-  for (int i = 0; i < 8; ++i)
-  {
-    lightShow(happy, colors, 100, 2, 0, i);
-    GizmoGardenTone(tones[7 - i], 100);
-    delay(250);
-  }
-  lightsOff();
-}
-
 MakeGizmoGardenText(tinyHeart,
 ". A . A .;"
 "A E A E A;"
 "A E E E A;"
 ". A E A .;"
 ". . A . .;");
+
+// *****************************
+// *                           *
+// *  Moving Arrow Light Show  *
+// *                           *
+// *****************************
+
+MakeGizmoGardenText(arrow,
+". . . . I . . ."
+". . . . I I . ."
+". . . . . I I ."
+"L L L L A A I I"
+"L L L L A A I I"
+". . . . . I I ."
+". . . . I I . ."
+". . . . I . . .");
+
+void arrowShow()
+{
+  // Move arrow left to right while playing musical scale
+  for (int i = 0; i < 8; ++i)
+  {
+    lightShow(arrow, colors, 100, 0, i - 7, 0);
+    GizmoGardenTone(tones[i], 100);
+    delay(250);
+  }
+  delay(750);
+
+  // Rotate arrow while beeping
+  for (int i = 1; i <= 3; ++i)
+  {
+    lightShow(arrow, colors, 100, i, 0, 0);
+    GizmoGardenTone(tones[6]);
+    delay(100);
+    GizmoGardenTone(tones[7], 100);
+    delay(900);
+  }
+  
+  // Move arrow top to bottom while playing musical
+  // scale backwards
+  for (int i = 0; i < 8; ++i)
+  {
+    lightShow(arrow, colors, 100, 3, 0, i + 1);
+    GizmoGardenTone(tones[7 - i], 100);
+    delay(250);
+  }
+}
+
+// ******************************
+// *                            *
+// *  Beating Heart Light Show  *
+// *                            *
+// ******************************
 
 MakeGizmoGardenText(smallHeart,
 ". E . . E .;"
@@ -79,5 +121,6 @@ void beatingHeart(int beats)
     GizmoGardenTone(1000, 200);
     delay(500);
   }
+  lightsOff();
 }
 

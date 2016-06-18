@@ -24,9 +24,7 @@ float springStiffness = 0.36;   // Follower's spring stiffness
 
 void gasPedal()
 {
-  float distance = readProximitySensor();
-  float driveSpeed = (stopDistance - distance) * springStiffness;
-  driver.setFullSpeed(driveSpeed);
+
 }
 
 // *********************************************
